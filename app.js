@@ -102,7 +102,7 @@ app.put("/listings/:id" ,validateListing,wrapasync(async(req , res) =>{
 }));
 
 //delete route
-app.delete("/listings/:id" , wrapasync(async (req,res) => {
+app.delete("/listings/:id" , wrapasync(async (req,res) => {//when it triggered then automatically db post middleware will be triggered because to remove the aligned reviews.
     let {id}=req.params;
     let deletedlisting = await Listing.findByIdAndDelete(id);
     res.redirect(`/listings`);
@@ -126,7 +126,6 @@ app.delete("/listings/:id/reviews/:reviewId",wrapasync(async(req,res)=>{
    let {id , reviewId}=req.params;
    await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});//pull is used to delete
    await Review.findByIdAndDelete(reviewId);
-console.log("DELETE ROUTE HIT 🔥");
    res.redirect(`/listings/${id}`);
 }));
 
