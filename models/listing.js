@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Schema=mongoose.Schema;
-const Schema = require("./review.js");
 const review = require("./review.js");
 const ListingSchema = mongoose.Schema({
     title: {
