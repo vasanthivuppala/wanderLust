@@ -31,7 +31,8 @@ router.get("/:id" ,wrapasync(async (req,res) =>{
     let {id} =req.params;
     const listing=await Listing.findById(id).populate("reviews");
     if(!listing){
-        return res.send("Listing not found");
+        req.flash("error" , "Listing was not found!");
+        res.redirect("/listings");
     }
     res.render("listings/show.ejs",{listing});
 }));
@@ -41,6 +42,7 @@ router.get("/:id" ,wrapasync(async (req,res) =>{
 router.post("/" ,validateListing, wrapasync(async (req,res,next) =>{
     const newlist = new Listing(req.body.listing);
     await newlist.save();
+    req.flash("success" , "New Listing created!");
     res.redirect("/listings");
 })   
 );
@@ -49,6 +51,10 @@ router.post("/" ,validateListing, wrapasync(async (req,res,next) =>{
 router.get("/:id/edit" , wrapasync(async (req,res) =>{
     let {id} =req.params;
     const listing = await Listing.findById(id);
+     if(!listing){
+        req.flash("error" , "Listing was not found!");
+        res.redirect("/listings");
+    }
     res.render("listings/edit.ejs" , {listing});
 }));
 
@@ -56,6 +62,7 @@ router.get("/:id/edit" , wrapasync(async (req,res) =>{
 router.put("/:id" ,validateListing,wrapasync(async(req , res) =>{
     let {id} =req.params;
     await Listing.findByIdAndUpdate(id, {...req.body.listing});
+    req.flash("success" , "Listing Updated!");
     res.redirect(`/listings/${id}`);
 }));
 
@@ -63,6 +70,7 @@ router.put("/:id" ,validateListing,wrapasync(async(req , res) =>{
 router.delete("/:id" , wrapasync(async (req,res) => {//when it triggered then automatically db post middleware will be triggered because to remove the aligned reviews.
     let {id}=req.params;
     let deletedlisting = await Listing.findByIdAndDelete(id);
+    req.flash("success" , "Listing Deleted!");
     res.redirect(`/listings`);
 }));
 

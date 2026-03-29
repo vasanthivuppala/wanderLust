@@ -28,6 +28,7 @@ let {error}=reviewSchema.validate(req.body);
     listing.reviews.push(newReview._id);
     await newReview.save();//doc already remembers the model name so no need to mention model name while saving
     await listing.save();
+    req.flash("success" , "New Review is Created!");
     res.redirect(`/listings/${listing._id}`);
  }));
 
@@ -36,6 +37,7 @@ router.delete("/:reviewId",wrapasync(async(req,res)=>{
    let {id , reviewId}=req.params;
    await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});//pull is used to delete
    await Review.findByIdAndDelete(reviewId);
+   req.flash("success" , "Review is Deleted!");
    res.redirect(`/listings/${id}`);
 }));
 
