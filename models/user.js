@@ -10,6 +10,6 @@ const userSchema = new Schema({
 
 });
 
-User.plugin(passportLocalMongoose); //username,hashing,salting will be added automatically without writing code.
-module.exports=mongoose.modell('User',userSchema);
+userSchema.plugin(passportLocalMongoose); //username,hashing,salting will be added automatically without writing code.
+module.exports=mongoose.model("User",userSchema);
 

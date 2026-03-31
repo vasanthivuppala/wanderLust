@@ -10,7 +10,7 @@ const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
-const localStratergy = require("passport-local");
+const LocalStratergy = require("passport-local");
 const User = require("./models/user.js");
 
 const listings=require("./routes/listing.js");
@@ -46,14 +46,29 @@ const sessionOptions = {
 };
 app.use(session(sessionOptions));
 app.use(flash());
+app.use(passport.initialize());  //passport makes authentication easier,quick setup.
+app.use(passport.session());
+passport.use(new LocalStratergy(User.authentication()));  //Use username & password login, and let the User model verify users.
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//serializeUser → save roll number
+//deserializeUser → get full student details when needed
 
 app.use((req,res,next) => {
     res.locals.success=req.flash("success");
     res.locals.error=req.flash("error");
     next();
 });
-app.get("/" , (req , res) =>{
-    res.send("hi");
+app.get("/demouser" ,async (req , res) =>{
+   let fakeuser=new User({
+    email : "student@gmail.com",
+    username:"delta-student",
+
+   });
+  let registeredUser=await User.register(fakeuser,"helloworld");
+  res.send(registeredUser);
 });
 
 
