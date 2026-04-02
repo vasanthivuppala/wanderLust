@@ -10,11 +10,12 @@ const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
-const LocalStratergy = require("passport-local");
+const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
-const listings=require("./routes/listing.js");
-const reviews=require("./routes/reviews.js");
+const listingsRouter=require("./routes/listing.js");
+const reviewsRouter=require("./routes/reviews.js");
+const userRouter=require("./routes/user.js");
 main()
     .then(() => {
     console.log("connected");
@@ -48,7 +49,7 @@ app.use(session(sessionOptions));
 app.use(flash());
 app.use(passport.initialize());  //passport makes authentication easier,quick setup.
 app.use(passport.session());
-passport.use(new LocalStratergy(User.authentication()));  //Use username & password login, and let the User model verify users.
+passport.use(new LocalStrategy(User.authenticate()));  //Use username & password login, and let the User model verify users.
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -61,26 +62,26 @@ app.use((req,res,next) => {
     res.locals.error=req.flash("error");
     next();
 });
-app.get("/demouser" ,async (req , res) =>{
-   let fakeuser=new User({
-    email : "student@gmail.com",
-    username:"delta-student",
+// app.get("/demouser" ,async (req , res) =>{
+//    let fakeuser=new User({
+//     email : "student@gmail.com",
+//     username:"delta-student",
 
-   });
-  let registeredUser=await User.register(fakeuser,"helloworld");
-  res.send(registeredUser);
-});
-
-
+//    });
+//   let registeredUser=await User.register(fakeuser,"helloworld");
+//   res.send(registeredUser);
+// });
 
 
 
-app.use("/listings",listings);
-app.use("/listings/:id/reviews",reviews);
 
 
-//handling the server side errors
-//this runs only when any route gets errors
+app.use("/listings",listingsRouter);
+app.use("/listings/:id/reviews",reviewsRouter);
+app.use("/",userRouter);
+
+
+
 
 //* it can be matched with every route if any entered route is not matching with existing route then error object will be created
 //below ones are middlewares normally they are like client->req->middlware->req. middleware will helps for the req(not exact meaning)
