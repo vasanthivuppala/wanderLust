@@ -23,7 +23,7 @@ router.post("/signup",wrapasync(async(req,res) =>{
 }));
 
 router.get("/login" ,(req,res) =>{
-  req.render("users/login.ejs");
+  res.render("users/login.ejs");
 });
 
 router.post("/login",passport.authenticate("local",

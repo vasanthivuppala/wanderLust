@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 const sessionOptions = {
     secret : "mysupersecretcode",
     resave:false, //false → saves only when something changes
-    saveUninitialized:true, //true → creates empty session for every user
+    saveUninitialized:false, //true → creates empty session for every user(without login)
     cookie:{
         expires:Date.now() + 7 * 24 * 60 * 60 * 1000, 
         maxAge:7 * 24 * 60 * 60 * 1000,
