@@ -57,9 +57,12 @@ passport.deserializeUser(User.deserializeUser());
 //serializeUser → save roll number
 //deserializeUser → get full student details when needed
 
+
+//These variables are accessible in all templates (EJS, Pug, etc.)
 app.use((req,res,next) => {
     res.locals.success=req.flash("success");
     res.locals.error=req.flash("error");
+    res.locals.currUser=req.user;
     next();
 });
 // app.get("/demouser" ,async (req , res) =>{
