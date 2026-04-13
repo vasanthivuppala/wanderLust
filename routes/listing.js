@@ -4,7 +4,7 @@ const wrapasync=require("../utils/wrapasync.js");
 const ExpressError = require("../utils/ExpressError.js");
 const {listingSchema}=require("../schema.js");
 const Listing=require("../models/listing.js");
-const {isLoggedIn}=require("../middleware.js");
+const {isLoggedIn,isOwner}=require("../middleware.js");
 
 const validateListing=(req,res,next)=>{
 let {error}=listingSchema.validate(req.body);
@@ -61,7 +61,10 @@ router.get("/:id/edit" ,isLoggedIn, wrapasync(async (req,res) =>{
 }));
 
 //route update
-router.put("/:id" ,isLoggedIn,validateListing,wrapasync(async(req , res) =>{
+router.put("/:id" ,
+    isLoggedIn,
+    isOwner,
+    validateListing,wrapasync(async(req , res) =>{
     let {id} =req.params;
     await Listing.findByIdAndUpdate(id, {...req.body.listing});
     req.flash("success" , "Listing Updated!");
@@ -69,7 +72,10 @@ router.put("/:id" ,isLoggedIn,validateListing,wrapasync(async(req , res) =>{
 }));
 
 //delete route
-router.delete("/:id" , isLoggedIn,wrapasync(async (req,res) => {//when it triggered then automatically db post middleware will be triggered because to remove the aligned reviews.
+router.delete("/:id",
+    isLoggedIn,
+    isOwner,
+    wrapasync(async (req,res) => {//when it triggered then automatically db post middleware will be triggered because to remove the aligned reviews.
     let {id}=req.params;
     let deletedlisting = await Listing.findByIdAndDelete(id);
     req.flash("success" , "Listing Deleted!");

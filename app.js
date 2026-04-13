@@ -59,6 +59,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 //These variables are accessible in all templates (EJS, Pug, etc.)
+//this middleware will store the curruser data.
 app.use((req,res,next) => {
     res.locals.success=req.flash("success");
     res.locals.error=req.flash("error");
