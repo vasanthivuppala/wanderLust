@@ -20,8 +20,12 @@ router.get("/new",isLoggedIn, wrapasync((req , res) =>{
 router.get("/:id" ,isLoggedIn,wrapasync(async (req,res) =>{
     let {id} =req.params;
     const listing=await Listing.findById(id)
-    .populate({path: "reviews",populate:{path:"author"},
-    }).populate("owner");
+    .populate({path: "reviews",
+        populate:{
+            path:"author",
+        },
+    })
+    .populate("owner");
     if(!listing){
         req.flash("error" , "Listing was not found!");
         res.redirect("/listings");

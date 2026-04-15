@@ -13,7 +13,6 @@ const {validatereview,isLoggedIn,isReviewAuthor}=require("../middleware.js");
 //reviews post route
  router.post("/",
     isLoggedIn,
-    isReviewAuthor,
     validatereview,
     wrapasync(async(req,res) => {
    // console.log(req.body);
