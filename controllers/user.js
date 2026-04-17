@@ -23,6 +23,8 @@ module.exports.signup=async(req,res) =>{
     req.flash("error",e.message);
     res.redirect("/signup");
   }
+
+  console.log("Good");
 };
 
 module.exports.renderloginform=(req,res) =>{
