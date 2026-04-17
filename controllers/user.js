@@ -15,7 +15,7 @@ module.exports.signup=async(req,res) =>{
         return next(err);
       }
        req.flash("success","Welcome to WanderLust");
-    res.redirect("res.locals.redirectUrl" || "/listings");
+    res.redirect(res.locals.redirectUrl || "/listings");
 
     });
   
