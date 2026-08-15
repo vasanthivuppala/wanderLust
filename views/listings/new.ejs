@@ -1,0 +1,225 @@
+<% layout("/layouts/boilerplate") -%>
+<link rel="stylesheet" href="/css/host.css">
+<div class="host-page">
+
+    <!-- LEFT INTRODUCTION -->
+    <div class="host-intro">
+
+        <div class="host-intro-content">
+
+            <span class="host-badge">
+                🏡 Become a Host
+            </span>
+
+            <h1>
+                Share your space,<br>
+                <span>create experiences.</span>
+            </h1>
+
+            <p>
+                Turn your property into someone's next
+                unforgettable journey with ExploreEase.
+            </p>
+
+            <div class="host-benefits">
+
+                <div class="host-benefit">
+                    <span>✨</span>
+                    <div>
+                        <strong>Reach more travelers</strong>
+                        <small>Showcase your property to explorers.</small>
+                    </div>
+                </div>
+
+                <div class="host-benefit">
+                    <span>💰</span>
+                    <div>
+                        <strong>Earn from your space</strong>
+                        <small>Turn your property into an opportunity.</small>
+                    </div>
+                </div>
+
+                <div class="host-benefit">
+                    <span>🌍</span>
+                    <div>
+                        <strong>Be part of ExploreEase</strong>
+                        <small>Help travelers discover unique stays.</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT FORM SECTION -->
+    <div class="host-form-section">
+
+        <div class="host-form-card">
+
+            <div class="host-form-header">
+
+            </div>
+
+
+            <form
+                method="POST"
+                action="/listings"
+                novalidate
+                class="needs-validation host-form"
+            >
+
+                <!-- TITLE -->
+                <div class="host-field">
+
+                    <label for="title">
+                        Property Title
+                    </label>
+
+                    <input
+                        id="title"
+                        name="listing[title]"
+                        placeholder="e.g. Cozy Beachside Villa"
+                        type="text"
+                        required
+                    >
+
+                    <div class="valid-feedback">
+                        Title looks good!
+                    </div>
+
+                    <div class="invalid-feedback">
+                        Please enter a title.
+                    </div>
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+                <div class="host-field">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="listing[description]"
+                        placeholder="Describe what makes your place special..."
+                        required
+                    ></textarea>
+
+                    <div class="invalid-feedback">
+                        Please enter a valid description.
+                    </div>
+
+                </div>
+
+
+                <!-- IMAGE -->
+                <div class="host-field">
+
+                    <label for="image">
+                        Property Image
+                    </label>
+
+                    <input
+                        id="image"
+                        name="listing[image]"
+                        placeholder="Paste your image URL"
+                        type="text"
+                    >
+
+                    <small class="host-help">
+                        Add a clear image that represents your property.
+                    </small>
+
+                </div>
+
+
+                <!-- PRICE + COUNTRY -->
+                <div class="host-row">
+
+                    <div class="host-field">
+
+                        <label for="price">
+                            Price / Night
+                        </label>
+
+                        <input
+                            id="price"
+                            name="listing[price]"
+                            placeholder="₹ 2500"
+                            type="number"
+                            required
+                        >
+
+                        <div class="invalid-feedback">
+                            Please enter a valid price.
+                        </div>
+
+                    </div>
+
+
+                    <div class="host-field">
+
+                        <label for="country">
+                            Country
+                        </label>
+
+                        <input
+                            id="country"
+                            name="listing[country]"
+                            placeholder="India"
+                            type="text"
+                            required
+                        >
+
+                        <div class="invalid-feedback">
+                            Please enter a valid country.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOCATION -->
+                <div class="host-field">
+
+                    <label for="location">
+                        Location
+                    </label>
+
+                    <input
+                        id="location"
+                        name="listing[location]"
+                        placeholder="e.g. Goa, India"
+                        type="text"
+                        required
+                    >
+
+                    <div class="invalid-feedback">
+                        Please enter a valid location.
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTON -->
+                <button
+                    type="submit"
+                    class="host-submit-btn"
+                >
+                    Create Listing →
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

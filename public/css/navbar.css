@@ -1,0 +1,60 @@
+/* ===========================
+   NAVBAR
+=========================== */
+
+.custom-navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+
+    padding:12px 0;
+
+    background:rgba(0,0,0,0.15);
+    backdrop-filter:blur(12px);
+
+    z-index:1000;
+}
+
+.navbar-brand{
+    font-size:1.8rem;
+    font-weight:700;
+    color:#ffffff !important;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.navbar-brand i{
+    color:#FBBF24;
+    font-size:2rem;
+}
+
+.brand-name{
+    color:#ffffff;
+    font-weight:700;
+}
+
+.nav-link{
+    color:white !important;
+    font-size:1rem;
+    font-weight:500;
+    margin:0 12px;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    color:#FBBF24 !important;
+}
+
+.signup-btn{
+    border:2px solid #FBBF24;
+    border-radius:30px;
+    padding:8px 20px !important;
+}
+
+.signup-btn:hover{
+    background:#FBBF24;
+    color:#111 !important;
+}

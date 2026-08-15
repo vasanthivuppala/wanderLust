@@ -1,0 +1,133 @@
+<% layout("/layouts/boilerplate") -%>
+<link rel="stylesheet" href="/css/auth.css">
+<div class="auth-page">
+
+    <!-- LEFT SIDE -->
+    <div class="auth-visual">
+
+
+        <div class="auth-overlay-content">
+
+            <p class="auth-small-text">
+                YOUR NEXT ADVENTURE STARTS HERE
+            </p>
+
+            <h2>
+                Explore the world,<br>
+                <span>create memories.</span>
+            </h2>
+
+            <div class="destination-badge">
+                📍 Discover beautiful destinations
+            </div>
+
+        </div>
+
+        <div class="auth-bottom-text">
+            <p>
+                Every destination has a story.<br>
+                <strong>What's yours?</strong>
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="auth-form-side">
+
+        <div class="auth-form-container">
+
+            <div class="auth-form-header">
+                <h2>Welcome Back!</h2>
+
+                <p>
+                    Sign in to continue your <span>journey</span>
+                </p>
+            </div>
+
+            <form action="/login" method="POST" class="auth-form">
+
+                <div class="auth-input-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <div class="auth-input-wrapper">
+
+                        <span>👤</span>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter your username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="auth-input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="auth-input-wrapper">
+
+                        <span>🔒</span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="auth-options">
+
+                    <label class="remember-option">
+
+                        <input
+                            type="checkbox"
+                            name="remember"
+                        >
+
+                        <span>Remember me</span>
+
+                    </label>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="auth-submit-btn"
+                >
+                    Login
+                </button>
+
+            </form>
+
+            <div class="auth-switch">
+
+                <p>New to ExploreEase?</p>
+
+                <a href="/signup">
+                    Create an Account →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,26 @@
+:root{
+
+    /* Backgrounds */
+    --bg-main: #dedfe1;
+    --bg-section: #FFFFFF;
+    --bg-alt: #F6F8FC;
+
+    /* Brand */
+    --primary-color: #D4A017;
+    --primary-hover: #F4C542;
+
+    /* Text */
+    --text-primary: #1F2937;
+    --text-secondary: #6B7280;
+
+    /* Cards */
+    --surface-color: #FFFFFF;
+
+    /* Shadows */
+    --shadow-light: 0 8px 20px rgba(0,0,0,.06);
+    --shadow-medium: 0 14px 35px rgba(0,0,0,.10);
+
+    /* Animation */
+    --transition: all .3s ease;
+
+}

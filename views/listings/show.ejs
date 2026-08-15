@@ -1,0 +1,424 @@
+
+<% layout("/layouts/boilerplate") -%>
+<div class="main-layout">
+
+    <!-- LEFT SIDE -->
+    <div class="left-column">
+
+        <div class="show-card">
+
+            <!-- Image -->
+            <div class="listing-image">
+
+                <img
+                    src="<%= listing.image %>"
+                    alt="<%= listing.title %>"
+                    class="show-img"
+                >
+
+                <button class="wishlist-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <button class="gallery-btn">
+                    <i class="fa-solid fa-images"></i>
+                    View Gallery
+                </button>
+
+            </div>
+
+            <!-- Details -->
+            <div class="listing-details">
+
+                <div class="title-row">
+
+                    <div>
+
+                        <h1 class="listing-title">
+                            <%= listing.title %>
+                        </h1>
+
+                        <div class="location-host">
+
+                            <span>
+                                <i class="fa-solid fa-location-dot"></i>
+                                <%= listing.location %>, <%= listing.country %>
+                            </span>
+
+                            <span class="dot">•</span>
+
+                            <span>
+                                <i class="fa-solid fa-user"></i>
+                                Hosted by
+                                <b><%= listing.owner?.username || "Unknown" %></b>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="rating-box">
+
+                        ⭐ 4.8
+
+                        <span>(124 Reviews)</span>
+
+                    </div>
+
+                </div>
+
+                <div class="price-feature-row">
+
+                    <div class="price-card">
+
+                        <small>Starting from</small>
+
+                        <h2>
+                            ₹ <%= listing.price.toLocaleString("en-IN") %>
+                        </h2>
+
+                        <span>/ night</span>
+
+                    </div>
+
+                    <div class="features">
+
+                        <div class="feature-pill">
+                            🛡 Verified Host
+                        </div>
+
+                        <div class="feature-pill">
+                            ✔ Free Cancellation
+                        </div>
+
+                        <div class="feature-pill">
+                            ⚡ Instant Booking
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="action-bar">
+
+                    <button class="action-btn">
+                        <i class="fa-solid fa-share-nodes"></i>
+                        Share
+                    </button>
+
+                    <button class="action-btn">
+                        <i class="fa-regular fa-heart"></i>
+                        Save
+                    </button>
+
+                    <% if(currUser && listing.owner.equals(currUser._id)){ %>
+
+                        <a
+                            href="/listings/<%= listing._id %>/edit"
+                            class="action-btn edit-btn"
+                        >
+                            <i class="fa-solid fa-pen"></i>
+                            Edit Listing
+                        </a>
+
+                        <form
+                            action="/listings/<%= listing._id %>?_method=DELETE"
+                            method="POST"
+                        >
+
+                            <button
+                                type="submit"
+                                class="action-btn delete-btn"
+                            >
+                                <i class="fa-solid fa-trash"></i>
+                                Delete Listing
+                            </button>
+
+                        </form>
+
+                    <% } %>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+
+    <aside class="local-gems">
+
+        <h3>
+             Local Gems
+        </h3>
+
+        <p>
+            Discover the best places around this stay.
+        </p>
+
+        <div class="gem-card">
+
+            🏖  Beaches
+
+            <span>2.1 km away</span>
+
+        </div>
+
+        <div class="gem-card">
+
+            🌅 Sunset Point
+
+            <span>3.4 km away</span>
+
+        </div>
+
+        <div class="gem-card">
+
+            ☕ Brew Corner
+
+            <span>650 m away</span>
+
+        </div>
+
+        <div class="gem-card">
+
+            🍽 Ocean Restaurant
+
+            <span>1.2 km away</span>
+
+        </div>
+
+        <div class="gem-card">
+
+            🛍 Local Market
+
+            <span>900 m away</span>
+
+        </div>
+
+    </aside>
+
+</div>
+
+
+<!-- ===========================
+        REVIEWS SECTION
+=========================== -->
+
+<section class="reviews-section">
+
+    <% if(listing.reviews.length > 0){ %>
+
+    <h2 class="reviews-main-title">
+        Guest Reviews
+    </h2>
+
+    <!-- Review Summary -->
+
+    <div class="review-summary">
+
+        <div class="rating-breakdown">
+
+            <div class="rating-row">
+                <span>★★★★★</span>
+                <div class="progress">
+                    <div class="progress-bar" style="width:80%"></div>
+                </div>
+                <span>89</span>
+            </div>
+
+            <div class="rating-row">
+                <span>★★★★☆</span>
+                <div class="progress">
+                    <div class="progress-bar" style="width:55%"></div>
+                </div>
+                <span>34</span>
+            </div>
+
+            <div class="rating-row">
+                <span>★★★☆☆</span>
+                <div class="progress">
+                    <div class="progress-bar" style="width:25%"></div>
+                </div>
+                <span>10</span>
+            </div>
+
+            <div class="rating-row">
+                <span>★★☆☆☆</span>
+                <div class="progress">
+                    <div class="progress-bar" style="width:10%"></div>
+                </div>
+                <span>3</span>
+            </div>
+
+            <div class="rating-row">
+                <span>★☆☆☆☆</span>
+                <div class="progress">
+                    <div class="progress-bar" style="width:5%"></div>
+                </div>
+                <span>1</span>
+            </div>
+
+        </div>
+
+        <div class="overall-rating">
+
+            <h1>4.8</h1>
+
+            <div class="overall-stars">
+                ⭐ ⭐ ⭐ ⭐ ⭐
+            </div>
+
+            <p>124 Reviews</p>
+
+        </div>
+
+    </div>
+
+    <% } %>
+
+    <!-- Bottom Section -->
+
+    <div class="review-layout <%= listing.reviews.length === 0 ? 'no-reviews' : '' %>">
+
+        <% if(listing.reviews.length > 0){ %>
+
+        <!-- LEFT -->
+
+        <div class="recent-reviews">
+
+            <h3>Recent Reviews</h3>
+
+            <% for(let review of listing.reviews){ %>
+
+            <div class="review-item">
+
+                <div class="review-avatar">
+                    <%= review.author.username.charAt(0).toUpperCase() %>
+                </div>
+
+                <div class="review-content">
+
+                    <div class="review-header">
+
+                        <div>
+
+                            <h5><%= review.author.username %></h5>
+
+                            <small>Guest Traveler</small>
+
+                        </div>
+
+                        <div class="review-stars">
+                            ⭐⭐⭐⭐☆
+                        </div>
+
+                    </div>
+
+                    <p class="review-message">
+
+                        "<%= review.comment %>"
+
+                    </p>
+
+                    <% if(currUser && review.author.equals(currUser._id)){ %>
+
+                    <form
+                        method="POST"
+                        action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
+                    >
+
+                        <button class="delete-review-btn">
+
+                            Delete
+
+                        </button>
+
+                    </form>
+
+                    <% } %>
+
+                </div>
+
+            </div>
+
+            <% } %>
+
+        </div>
+
+        <% } %>
+
+        <!-- RIGHT -->
+
+        <div class="add-review">
+
+            <h3>Add Your Review</h3>
+
+            <% if(listing.reviews.length === 0){ %>
+
+                <p class="review-form-subtitle">
+                    🌟 Be the first traveler to review this stay.
+                </p>
+
+            <% } else { %>
+
+                <p class="review-form-subtitle">
+                    Share your experience with future travelers.
+                </p>
+
+            <% } %>
+
+            <form
+                action="/listings/<%= listing._id %>/reviews"
+                method="POST"
+                novalidate
+                class="needs-validation"
+            >
+
+                <label>Rating</label>
+
+                <input
+                    type="range"
+                    min="1"
+                    max="5"
+                    name="review[rating]"
+                    class="form-range"
+                >
+
+                <label class="mt-4">
+
+                    Write Review
+
+                </label>
+
+                <textarea
+                    name="review[comment]"
+                    rows="6"
+                    maxlength="50"
+                    class="form-control"
+                    placeholder="Write your review (Max 50 characters)"
+                    required
+                ></textarea>
+
+                <div class="invalid-feedback">
+
+                    Please enter your review.
+
+                </div>
+
+                <button class="submit-review-btn mt-4">
+
+                    Submit Review
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+ 

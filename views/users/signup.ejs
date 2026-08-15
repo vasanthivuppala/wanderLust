@@ -1,0 +1,185 @@
+<% layout("/layouts/boilerplate") -%>
+
+<link rel="stylesheet" href="/css/auth.css">
+
+<div class="auth-page">
+
+    <!-- LEFT SIDE -->
+    <div class="auth-visual">
+
+        <div class="auth-overlay-content">
+
+            <p class="auth-small-text">
+                YOUR JOURNEY BEGINS HERE
+            </p>
+
+            <h2>
+                Discover the world,<br>
+                <span>create your story.</span>
+            </h2>
+
+            <div class="destination-badge">
+                📍 Find your next adventure
+            </div>
+
+        </div>
+
+        <div class="auth-bottom-text">
+            <p>
+                New places.<br>
+                <strong>New memories.</strong>
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="auth-form-side">
+
+        <div class="auth-form-container signup-container">
+
+            <!-- HEADER -->
+            <div class="auth-form-header">
+
+                <h2>
+                    Create Account 
+                </h2>
+
+                <p>
+                    Start your journey with
+                    <span>ExploreEase</span>
+                </p>
+
+            </div>
+
+
+            <!-- SIGNUP FORM -->
+            <form
+                action="/signup"
+                method="POST"
+                class="auth-form"
+            >
+
+                <!-- USERNAME -->
+                <div class="auth-input-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <div class="auth-input-wrapper">
+
+                        <span>👤</span>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Choose a username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMAIL -->
+                <div class="auth-input-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <div class="auth-input-wrapper">
+
+                        <span>✉️</span>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+                <div class="auth-input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="auth-input-wrapper">
+
+                        <span>🔒</span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a password"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- TERMS -->
+                <div class="signup-terms">
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            required
+                        >
+
+                        <span>
+                            I agree to the
+                            <a href="/terms">Terms & Conditions</a>
+                            and
+                            <a href="/privacy">Privacy Policy</a>.
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- BUTTON -->
+                <button
+                    type="submit"
+                    class="auth-submit-btn"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <!-- LOGIN LINK -->
+            <div class="auth-switch">
+
+                <p>
+                    Already have an account?
+                </p>
+
+                <a href="/login">
+                    Sign In →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
